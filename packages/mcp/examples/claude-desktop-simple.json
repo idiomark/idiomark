@@ -1,0 +1,26 @@
+{
+  "mcpServers": {
+    "my-personality": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@idiomark/mcp",
+        "--file",
+        "C:\\Users\\jrnew\\.idiomark\\me.idiomark"
+      ]
+    },
+    "my-personality-engine": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@idiomark/mcp",
+        "--file",
+        "C:\\Users\\jrnew\\.idiomark\\me.idiomark",
+        "--llm-type",
+        "ollama",
+        "--llm-model",
+        "llama3.2"
+      ]
+    }
+  }
+}

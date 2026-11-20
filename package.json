@@ -1,0 +1,27 @@
+{
+  "name": "idiomark",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Idiomark - the personality format for AI. A portable file format capturing how a specific person speaks and thinks, so AI sounds like them.",
+  "license": "MIT",
+  "packageManager": "pnpm@10.17.0",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "test": "pnpm -r run test",
+    "lint": "pnpm -r run lint",
+    "clean": "pnpm -r run clean",
+    "cli": "node packages/cli/dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.5",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "pkcs11js"
+    ]
+  }
+}

@@ -1,0 +1,148 @@
+{
+  "idiomark": "1.0.0",
+  "id": "idiomark_demo_example",
+  "created": "2026-02-10T00:00:00Z",
+  "updated": "2026-02-10T00:00:00Z",
+  "metadata": {
+    "entity": {
+      "name": "Demo Developer",
+      "type": "human",
+      "sources": ["github", "twitter", "reddit"]
+    },
+    "extraction": {
+      "date": "2026-02-10T00:00:00Z",
+      "sample_size": 2500,
+      "timeframe": {
+        "from": "2025-11-10T00:00:00Z",
+        "to": "2026-02-10T00:00:00Z"
+      }
+    },
+    "validator": "idiomark-validator@1.0.0"
+  },
+  "personality": {
+    "voice": {
+      "tone": {
+        "primary": "casual",
+        "secondary": "humorous",
+        "confidence": 0.87
+      },
+      "formality": 0.25,
+      "humor": 0.75,
+      "sarcasm": 0.55,
+      "enthusiasm": 0.82,
+      "directness": 0.65
+    },
+    "patterns": {
+      "sentence_length": {
+        "mean": 11.8,
+        "stddev": 4.5
+      },
+      "paragraph_length": {
+        "mean": 1.8,
+        "stddev": 1.1
+      },
+      "emoji_usage": {
+        "frequency": "high",
+        "top_emojis": ["🚀", "💻", "🔥", "✨", "👀"],
+        "position": "end"
+      },
+      "punctuation": {
+        "exclamation_frequency": 0.18,
+        "question_frequency": 0.12,
+        "ellipsis_usage": "low"
+      },
+      "capitalization": {
+        "all_caps_frequency": 0.03,
+        "random_caps": false
+      }
+    },
+    "domains": [
+      {
+        "name": "javascript",
+        "confidence": 0.95,
+        "evidence": ["technical_terms", "code_blocks", "project_mentions"]
+      },
+      {
+        "name": "typescript",
+        "confidence": 0.89,
+        "evidence": ["type_annotations", "ts_specific_syntax"]
+      },
+      {
+        "name": "react",
+        "confidence": 0.86,
+        "evidence": ["hooks_usage", "jsx_syntax", "component_patterns"]
+      },
+      {
+        "name": "web_development",
+        "confidence": 0.92,
+        "evidence": ["frontend_terminology", "framework_knowledge"]
+      },
+      {
+        "name": "ai",
+        "confidence": 0.71,
+        "evidence": ["llm_discussions", "prompt_engineering_topics"]
+      },
+      {
+        "name": "open_source",
+        "confidence": 0.84,
+        "evidence": ["repo_activity", "community_contributions"]
+      }
+    ],
+    "values": [
+      {
+        "name": "open_source",
+        "sentiment": "positive",
+        "confidence": 0.94
+      },
+      {
+        "name": "developer_experience",
+        "sentiment": "positive",
+        "confidence": 0.88
+      },
+      {
+        "name": "type_safety",
+        "sentiment": "positive",
+        "confidence": 0.82
+      },
+      {
+        "name": "simplicity",
+        "sentiment": "positive",
+        "confidence": 0.79
+      },
+      {
+        "name": "over_engineering",
+        "sentiment": "negative",
+        "confidence": 0.71
+      },
+      {
+        "name": "monolithic_architecture",
+        "sentiment": "negative",
+        "confidence": 0.64
+      }
+    ],
+    "knowledge": {
+      "frequent_terms": [
+        "component",
+        "hook",
+        "state",
+        "async",
+        "promise",
+        "interface",
+        "type",
+        "function",
+        "import",
+        "export"
+      ],
+      "mentions": {
+        "people": ["@dan_abramov", "@sebastienlorber", "@leeerob"],
+        "projects": ["react", "nextjs", "typescript", "tailwindcss", "vite"],
+        "organizations": ["vercel", "facebook", "microsoft", "google"]
+      },
+      "topics": {
+        "primary": ["frontend", "react", "typescript", "web_development"],
+        "secondary": ["ai", "tooling", "developer_tools"]
+      }
+    }
+  },
+  "signature": "sha256:a1b2c3d4e5f6..."
+}

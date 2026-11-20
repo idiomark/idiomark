@@ -1,0 +1,628 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idiomark.protocol/schemas/v2/idiomark-v2",
+  "title": "Idiomark File Format v2 (Experimental)",
+  "description": "Idiomark Protocol V2 (Experimental/Beta) - Extended personality dimensions based on psycholinguistics research. These fields are optional and run in parallel with V1 to gather data on what graduates to stable.",
+
+  "type": "object",
+  "required": ["idiomark", "id", "created", "updated", "metadata", "personality"],
+  "additionalProperties": false,
+
+  "properties": {
+    "idiomark": {
+      "type": "string",
+      "pattern": "^2\\.0\\.0(-[a-zA-Z0-9]+)?$",
+      "description": "Protocol version (must be 2.0.0 or 2.0.0-beta)"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^idiomark_[a-zA-Z0-9_-]+$",
+      "description": "Unique identifier for this Idiomark file"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this file was created"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this file was last updated"
+    },
+    "metadata": {
+      "$ref": "#/definitions/metadata"
+    },
+    "personality": {
+      "$ref": "#/definitions/personalityV2"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Optional cryptographic signature for file integrity"
+    }
+  },
+
+  "definitions": {
+    "metadata": {
+      "type": "object",
+      "required": ["entity", "extraction"],
+      "additionalProperties": false,
+      "properties": {
+        "entity": {
+          "$ref": "#/definitions/entity"
+        },
+        "extraction": {
+          "$ref": "#/definitions/extraction"
+        },
+        "validator": {
+          "type": "string",
+          "description": "Analysis provider or model used for validation"
+        }
+      }
+    },
+
+    "entity": {
+      "type": "object",
+      "required": ["type", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["human", "brand", "bot", "fictional"]
+        },
+        "sources": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        }
+      }
+    },
+
+    "extraction": {
+      "type": "object",
+      "required": ["date", "sample_size", "timeframe"],
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "timeframe": {
+          "type": "object",
+          "required": ["from", "to"],
+          "properties": {
+            "from": { "type": "string", "format": "date-time" },
+            "to": { "type": "string", "format": "date-time" }
+          }
+        }
+      }
+    },
+
+    "personalityV2": {
+      "type": "object",
+      "required": ["voice", "patterns", "domains", "values", "knowledge"],
+      "additionalProperties": false,
+      "description": "Extended personality with V1 core and V2 experimental dimensions",
+      "properties": {
+        "voice": { "$ref": "#/definitions/voice" },
+        "patterns": { "$ref": "#/definitions/patterns" },
+        "domains": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/domain" }
+        },
+        "values": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/value" }
+        },
+        "knowledge": { "$ref": "#/definitions/knowledge" },
+
+        "big_five": {
+          "$ref": "#/definitions/bigFiveTraits",
+          "description": "Big Five personality traits (OCEAN model) - research-backed"
+        },
+        "linguistic_markers": {
+          "$ref": "#/definitions/linguisticMarkers",
+          "description": "Linguistic markers from psycholinguistics research"
+        },
+        "communication_style": {
+          "$ref": "#/definitions/communicationStyle",
+          "description": "Communication style patterns"
+        },
+        "cognitive_patterns": {
+          "$ref": "#/definitions/cognitivePatterns",
+          "description": "Cognitive patterns and thinking style"
+        },
+        "emotional_patterns": {
+          "$ref": "#/definitions/emotionalPatterns",
+          "description": "Emotional patterns beyond simple enthusiasm"
+        },
+        "social_dynamics": {
+          "$ref": "#/definitions/socialDynamics",
+          "description": "Social dynamics and interaction patterns"
+        },
+        "_meta": {
+          "$ref": "#/definitions/personalityV2Meta",
+          "description": "Metadata about V2 personality data"
+        }
+      }
+    },
+
+    "voice": {
+      "type": "object",
+      "required": ["tone", "formality", "humor", "sarcasm", "enthusiasm", "directness"],
+      "additionalProperties": false,
+      "properties": {
+        "tone": {
+          "type": "object",
+          "required": ["primary", "confidence"],
+          "properties": {
+            "primary": { "type": "string" },
+            "secondary": { "type": "string" },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "formality": { "type": "number", "minimum": 0, "maximum": 1 },
+        "humor": { "type": "number", "minimum": 0, "maximum": 1 },
+        "sarcasm": { "type": "number", "minimum": 0, "maximum": 1 },
+        "enthusiasm": { "type": "number", "minimum": 0, "maximum": 1 },
+        "directness": { "type": "number", "minimum": 0, "maximum": 1 },
+        "openness": { "type": "number", "minimum": 0, "maximum": 1 },
+        "conscientiousness": { "type": "number", "minimum": 0, "maximum": 1 },
+        "extraversion": { "type": "number", "minimum": 0, "maximum": 1 },
+        "agreeableness": { "type": "number", "minimum": 0, "maximum": 1 },
+        "neuroticism": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+
+    "patterns": {
+      "type": "object",
+      "required": ["sentence_length", "emoji_usage", "punctuation"],
+      "additionalProperties": false,
+      "properties": {
+        "sentence_length": {
+          "type": "object",
+          "required": ["mean", "stddev"],
+          "properties": {
+            "mean": { "type": "number", "minimum": 0 },
+            "stddev": { "type": "number", "minimum": 0 }
+          }
+        },
+        "paragraph_length": {
+          "type": "object",
+          "properties": {
+            "mean": { "type": "number", "minimum": 0 },
+            "stddev": { "type": "number", "minimum": 0 }
+          }
+        },
+        "emoji_usage": {
+          "type": "object",
+          "required": ["frequency", "top_emojis"],
+          "properties": {
+            "frequency": { "type": "string", "enum": ["none", "low", "medium", "high"] },
+            "top_emojis": { "type": "array", "items": { "type": "string" } },
+            "position": { "type": "string", "enum": ["start", "end", "mixed"] }
+          }
+        },
+        "punctuation": {
+          "type": "object",
+          "required": ["exclamation_frequency", "question_frequency", "ellipsis_usage"],
+          "properties": {
+            "exclamation_frequency": { "type": "number", "minimum": 0, "maximum": 1 },
+            "question_frequency": { "type": "number", "minimum": 0, "maximum": 1 },
+            "ellipsis_usage": { "type": "string", "enum": ["none", "low", "medium", "high"] }
+          }
+        },
+        "capitalization": {
+          "type": "object",
+          "properties": {
+            "all_caps_frequency": { "type": "number", "minimum": 0, "maximum": 1 },
+            "random_caps": { "type": "boolean" }
+          }
+        },
+        "liwc_categories": {
+          "type": "object",
+          "properties": {
+            "first_person_singular": { "type": "number", "minimum": 0, "maximum": 1 },
+            "first_person_plural": { "type": "number", "minimum": 0, "maximum": 1 },
+            "third_person": { "type": "number", "minimum": 0, "maximum": 1 },
+            "positive_emotion": { "type": "number", "minimum": 0, "maximum": 1 },
+            "negative_emotion": { "type": "number", "minimum": 0, "maximum": 1 },
+            "cognitive_process": { "type": "number", "minimum": 0, "maximum": 1 },
+            "social_words": { "type": "number", "minimum": 0, "maximum": 1 },
+            "work_words": { "type": "number", "minimum": 0, "maximum": 1 },
+            "achievement_words": { "type": "number", "minimum": 0, "maximum": 1 },
+            "articles": { "type": "number", "minimum": 0, "maximum": 1 },
+            "long_words": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+
+    "domain": {
+      "type": "object",
+      "required": ["name", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "evidence": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+
+    "value": {
+      "type": "object",
+      "required": ["name", "sentiment", "confidence"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "sentiment": { "type": "string", "enum": ["positive", "negative", "neutral"] },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+
+    "knowledge": {
+      "type": "object",
+      "required": ["frequent_terms", "topics"],
+      "additionalProperties": false,
+      "properties": {
+        "frequent_terms": { "type": "array", "items": { "type": "string" } },
+        "mentions": {
+          "type": "object",
+          "properties": {
+            "people": { "type": "array", "items": { "type": "string" } },
+            "projects": { "type": "array", "items": { "type": "string" } },
+            "organizations": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "topics": {
+          "type": "object",
+          "required": ["primary"],
+          "properties": {
+            "primary": { "type": "array", "items": { "type": "string" } },
+            "secondary": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+
+    "bigFiveTraits": {
+      "type": "object",
+      "required": ["openness", "conscientiousness", "extraversion", "agreeableness", "neuroticism", "confidence"],
+      "additionalProperties": false,
+      "description": "Big Five personality traits (OCEAN) - most researched personality model",
+      "properties": {
+        "openness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Creativity, curiosity, adventure-seeking"
+        },
+        "conscientiousness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Organization, discipline, reliability"
+        },
+        "extraversion": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Social energy, stimulation-seeking"
+        },
+        "agreeableness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Cooperation, empathy, harmony-seeking"
+        },
+        "neuroticism": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Emotional stability (low = stable)"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence in this assessment"
+        }
+      }
+    },
+
+    "linguisticMarkers": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Linguistic markers from psycholinguistics research",
+      "properties": {
+        "pronouns": {
+          "type": "object",
+          "properties": {
+            "first_person_singular": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "'I' usage - indicates self-focus"
+            },
+            "first_person_plural": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "'we' usage - indicates group identity"
+            },
+            "second_person": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "'you' usage - indicates audience focus"
+            }
+          }
+        },
+        "hedging": {
+          "type": "object",
+          "required": ["frequency", "common_hedges", "confidence"],
+          "description": "Hedging language - uncertainty indicators",
+          "properties": {
+            "frequency": {
+              "type": "string",
+              "enum": ["low", "medium", "high"]
+            },
+            "common_hedges": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "e.g., 'maybe', 'perhaps', 'might'"
+            },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
+        "absolutist_language": {
+          "type": "object",
+          "required": ["frequency", "common_absolutes"],
+          "properties": {
+            "frequency": { "type": "number", "minimum": 0, "maximum": 1 },
+            "common_absolutes": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "e.g., 'always', 'never', 'every'"
+            }
+          }
+        },
+        "concreteness": {
+          "type": "object",
+          "required": ["score", "confidence"],
+          "properties": {
+            "score": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1,
+              "description": "-1.0 (very concrete) to 1.0 (very abstract)"
+            },
+            "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+
+    "communicationStyle": {
+      "type": "object",
+      "required": ["question_frequency", "self_disclosure", "task_vs_social", "conflict_approach", "explanation_style"],
+      "additionalProperties": false,
+      "description": "Communication style patterns",
+      "properties": {
+        "question_frequency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Indicates curiosity and engagement style"
+        },
+        "self_disclosure": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How much personal info they share"
+        },
+        "task_vs_social": {
+          "type": "number",
+          "minimum": -1,
+          "maximum": 1,
+          "description": "-1.0 (purely task) to 1.0 (purely social)"
+        },
+        "conflict_approach": {
+          "type": "string",
+          "enum": ["direct", "diplomatic", "avoidant", "collaborative", "competitive"],
+          "description": "How they approach conflict/disagreement"
+        },
+        "explanation_style": {
+          "type": "string",
+          "enum": ["terse", "concise", "balanced", "detailed", "comprehensive"],
+          "description": "Preferred explanation length"
+        },
+        "response_pattern": {
+          "type": "object",
+          "properties": {
+            "average_delay_seconds": { "type": "number" },
+            "burst_frequency": {
+              "type": "number",
+              "description": "Tendency to send multiple messages quickly"
+            }
+          }
+        }
+      }
+    },
+
+    "cognitivePatterns": {
+      "type": "object",
+      "required": ["thinking_style", "decision_making", "information_processing", "learning_preference", "problem_solving"],
+      "additionalProperties": false,
+      "description": "Cognitive patterns and thinking style",
+      "properties": {
+        "thinking_style": {
+          "type": "string",
+          "enum": ["analytical", "intuitive", "creative", "pragmatic", "scientific", "artistic"],
+          "description": "Primary thinking style"
+        },
+        "decision_making": {
+          "type": "string",
+          "enum": ["quick", "deliberate", "collaborative", "data_driven", "gut_instinct"],
+          "description": "Decision-making approach"
+        },
+        "information_processing": {
+          "type": "string",
+          "enum": ["detailed", "big_picture", "synthesizing", "filtering"],
+          "description": "Information processing preference"
+        },
+        "learning_preference": {
+          "type": "string",
+          "enum": ["theoretical", "hands_on", "observational", "experimental", "collaborative"],
+          "description": "Learning preference"
+        },
+        "problem_solving": {
+          "type": "object",
+          "properties": {
+            "structured": { "type": "boolean", "description": "Prefers step-by-step approaches" },
+            "iterative": { "type": "boolean", "description": "Builds solutions through refinement" },
+            "lateral": { "type": "boolean", "description": "Uses creative/out-of-box thinking" }
+          }
+        }
+      }
+    },
+
+    "emotionalPatterns": {
+      "type": "object",
+      "required": ["baseline_tone", "expressiveness", "emotional_contagion", "emotion_word_diversity"],
+      "additionalProperties": false,
+      "description": "Emotional patterns beyond simple enthusiasm",
+      "properties": {
+        "baseline_tone": {
+          "type": "string",
+          "enum": ["optimistic", "neutral", "realistic", "pessimistic", "skeptical"],
+          "description": "Baseline emotional tone"
+        },
+        "expressiveness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How freely emotions are expressed"
+        },
+        "emotional_contagion": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Tendency to pick up others' emotions"
+        },
+        "stress_indicators": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Language patterns when stressed"
+        },
+        "excitement_indicators": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Language patterns when excited"
+        },
+        "emotion_word_diversity": {
+          "type": "string",
+          "enum": ["low", "medium", "high"],
+          "description": "Emotional vocabulary richness"
+        },
+        "empathy_markers": {
+          "type": "object",
+          "properties": {
+            "perspective_taking": { "type": "number", "minimum": 0, "maximum": 1 },
+            "validation_responses": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+
+    "socialDynamics": {
+      "type": "object",
+      "required": ["leadership_style", "status_orientation"],
+      "additionalProperties": false,
+      "description": "Social dynamics and interaction patterns",
+      "properties": {
+        "leadership_style": {
+          "type": "string",
+          "enum": ["directive", "collaborative", "supportive", "delegative", "situational"],
+          "description": "Leadership style"
+        },
+        "status_orientation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "How much hierarchy/status signals matter"
+        },
+        "ingroup_signals": {
+          "type": "object",
+          "description": "In-group language that signals belonging",
+          "properties": {
+            "jargon": { "type": "array", "items": { "type": "string" } },
+            "cultural_references": { "type": "array", "items": { "type": "string" } },
+            "community_phrases": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "humor_targets": {
+          "type": "object",
+          "description": "What/who they joke about",
+          "properties": {
+            "self_deprecating": { "type": "boolean" },
+            "targets_others": { "type": "boolean" },
+            "targets_situations": { "type": "boolean" },
+            "targets_absurd": { "type": "boolean" },
+            "taboo_topics": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "community_engagement": {
+          "type": "object",
+          "properties": {
+            "helping_behavior": { "type": "number", "minimum": 0, "maximum": 1 },
+            "mentoring": { "type": "number", "minimum": 0, "maximum": 1 },
+            "conflict_mediation": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+
+    "personalityV2Meta": {
+      "type": "object",
+      "required": ["populated_fields", "field_confidence", "field_sources"],
+      "additionalProperties": false,
+      "description": "Metadata for V2 personality data",
+      "properties": {
+        "populated_fields": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Which V2 fields are populated"
+        },
+        "field_confidence": {
+          "type": "object",
+          "additionalProperties": { "type": "number", "minimum": 0, "maximum": 1 },
+          "description": "Suggested confidence scores for V2 dimensions"
+        },
+        "field_sources": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "enum": ["llm", "statistical", "manual", "inferred"]
+          },
+          "description": "Source/method used for each V2 dimension"
+        },
+        "analyzed_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Date V2 analysis was performed"
+        },
+        "analyzer_version": {
+          "type": "string",
+          "description": "Analyzer/model version that produced V2 data"
+        }
+      }
+    }
+  }
+}

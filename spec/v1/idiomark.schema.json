@@ -1,0 +1,539 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idiomark.protocol/schemas/v1/idiomark",
+  "title": "Idiomark File Format v1",
+  "description": "Idiomark Protocol V1 (Stable) - Personality Characterization Protocol. A comprehensive personality profile format that captures linguistic patterns, behavioral tendencies, and cognitive styles through analysis of text content.",
+
+  "type": "object",
+  "required": ["idiomark", "id", "created", "updated", "metadata", "personality"],
+  "additionalProperties": false,
+
+  "properties": {
+    "idiomark": {
+      "type": "string",
+      "pattern": "^1\\.\\d+\\.\\d+(-[a-zA-Z0-9]+)?$",
+      "description": "Protocol version (semver, must start with 1.x.x)"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^idiomark_[a-zA-Z0-9_-]+$",
+      "description": "Unique identifier for this Idiomark file"
+    },
+    "created": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this file was created"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when this file was last updated"
+    },
+    "metadata": {
+      "$ref": "#/definitions/metadata"
+    },
+    "personality": {
+      "$ref": "#/definitions/personality"
+    },
+    "signature": {
+      "type": "string",
+      "description": "Optional cryptographic signature for file integrity"
+    }
+  },
+
+  "definitions": {
+    "metadata": {
+      "type": "object",
+      "required": ["entity", "extraction"],
+      "additionalProperties": false,
+      "properties": {
+        "entity": {
+          "$ref": "#/definitions/entity"
+        },
+        "extraction": {
+          "$ref": "#/definitions/extraction"
+        },
+        "validator": {
+          "type": "string",
+          "description": "Analysis provider or model used for validation"
+        }
+      }
+    },
+
+    "entity": {
+      "type": "object",
+      "required": ["type", "sources"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Optional name of the entity"
+        },
+        "type": {
+          "type": "string",
+          "enum": ["human", "brand", "bot", "fictional"],
+          "description": "Type of entity this profile represents"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "description": "Data source platforms used for extraction"
+        }
+      }
+    },
+
+    "extraction": {
+      "type": "object",
+      "required": ["date", "sample_size", "timeframe"],
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the extraction was performed"
+        },
+        "sample_size": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Number of content samples analyzed"
+        },
+        "timeframe": {
+          "type": "object",
+          "required": ["from", "to"],
+          "additionalProperties": false,
+          "properties": {
+            "from": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Start of the data timeframe"
+            },
+            "to": {
+              "type": "string",
+              "format": "date-time",
+              "description": "End of the data timeframe"
+            }
+          }
+        }
+      }
+    },
+
+    "personality": {
+      "type": "object",
+      "required": ["voice", "patterns", "domains", "values", "knowledge"],
+      "additionalProperties": false,
+      "properties": {
+        "voice": {
+          "$ref": "#/definitions/voice"
+        },
+        "patterns": {
+          "$ref": "#/definitions/patterns"
+        },
+        "domains": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/domain"
+          },
+          "description": "Areas of expertise or interest"
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/value"
+          },
+          "description": "Values and principles expressed"
+        },
+        "knowledge": {
+          "$ref": "#/definitions/knowledge"
+        }
+      }
+    },
+
+    "voice": {
+      "type": "object",
+      "required": ["tone", "formality", "humor", "sarcasm", "enthusiasm", "directness"],
+      "additionalProperties": false,
+      "description": "Communication style and tone characteristics",
+      "properties": {
+        "tone": {
+          "type": "object",
+          "required": ["primary", "confidence"],
+          "additionalProperties": false,
+          "properties": {
+            "primary": {
+              "type": "string",
+              "description": "Primary communication tone (e.g., 'casual', 'professional', 'friendly')"
+            },
+            "secondary": {
+              "type": "string",
+              "description": "Secondary communication tone"
+            },
+            "confidence": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Confidence level of tone detection"
+            }
+          }
+        },
+        "formality": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Formality level (0 = very casual, 1 = very formal)"
+        },
+        "humor": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Humor usage level (0 = serious, 1 = very humorous)"
+        },
+        "sarcasm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Sarcasm level (0 = sincere, 1 = very sarcastic)"
+        },
+        "enthusiasm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Enthusiasm level (0 = flat, 1 = very enthusiastic)"
+        },
+        "directness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Directness level (0 = indirect, 1 = very direct)"
+        },
+        "openness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Big Five: Openness (complex vocabulary, curiosity, creativity)"
+        },
+        "conscientiousness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Big Five: Conscientiousness (achievement words, work focus)"
+        },
+        "extraversion": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Big Five: Extraversion (social words, positive emotion)"
+        },
+        "agreeableness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Big Five: Agreeableness (collaboration, social harmony)"
+        },
+        "neuroticism": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Big Five: Neuroticism (negative emotion, anxiety markers)"
+        }
+      }
+    },
+
+    "patterns": {
+      "type": "object",
+      "required": ["sentence_length", "emoji_usage", "punctuation"],
+      "additionalProperties": false,
+      "description": "Linguistic patterns and writing style",
+      "properties": {
+        "sentence_length": {
+          "type": "object",
+          "required": ["mean", "stddev"],
+          "additionalProperties": false,
+          "properties": {
+            "mean": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Average sentence length in words"
+            },
+            "stddev": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Standard deviation of sentence length"
+            }
+          }
+        },
+        "paragraph_length": {
+          "type": "object",
+          "required": ["mean", "stddev"],
+          "additionalProperties": false,
+          "properties": {
+            "mean": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Average paragraph length in sentences"
+            },
+            "stddev": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Standard deviation of paragraph length"
+            }
+          }
+        },
+        "emoji_usage": {
+          "type": "object",
+          "required": ["frequency", "top_emojis"],
+          "additionalProperties": false,
+          "properties": {
+            "frequency": {
+              "type": "string",
+              "enum": ["none", "low", "medium", "high"],
+              "description": "Overall emoji usage frequency"
+            },
+            "top_emojis": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Most frequently used emojis"
+            },
+            "position": {
+              "type": "string",
+              "enum": ["start", "end", "mixed"],
+              "description": "Typical emoji position in text"
+            }
+          }
+        },
+        "punctuation": {
+          "type": "object",
+          "required": ["exclamation_frequency", "question_frequency", "ellipsis_usage"],
+          "additionalProperties": false,
+          "properties": {
+            "exclamation_frequency": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Frequency of exclamation marks"
+            },
+            "question_frequency": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Frequency of question marks"
+            },
+            "ellipsis_usage": {
+              "type": "string",
+              "enum": ["none", "low", "medium", "high"],
+              "description": "Ellipsis usage level"
+            }
+          }
+        },
+        "capitalization": {
+          "type": "object",
+          "required": ["all_caps_frequency", "random_caps"],
+          "additionalProperties": false,
+          "properties": {
+            "all_caps_frequency": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Frequency of ALL CAPS usage"
+            },
+            "random_caps": {
+              "type": "boolean",
+              "description": "Whether random capitalization is present"
+            }
+          }
+        },
+        "liwc_categories": {
+          "type": "object",
+          "description": "LIWC-inspired linguistic markers (scientifically validated)",
+          "additionalProperties": false,
+          "properties": {
+            "first_person_singular": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "I, me, my - self-focus indicator"
+            },
+            "first_person_plural": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "we, us - collective focus"
+            },
+            "third_person": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "he, she, they - other focus"
+            },
+            "positive_emotion": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Positive emotion words ratio"
+            },
+            "negative_emotion": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Negative emotion words ratio"
+            },
+            "cognitive_process": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Insight, cause, know - thinking style"
+            },
+            "social_words": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Social process words ratio"
+            },
+            "work_words": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Work-related terms ratio"
+            },
+            "achievement_words": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Award, earn, success - goal focus"
+            },
+            "articles": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "a, an, the - complexity indicator"
+            },
+            "long_words": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Words > 6 letters - sophistication"
+            }
+          }
+        }
+      }
+    },
+
+    "domain": {
+      "type": "object",
+      "required": ["name", "confidence"],
+      "additionalProperties": false,
+      "description": "An area of expertise or interest",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the domain (e.g., 'software-engineering', 'music')"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence level of domain detection"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Evidence supporting this domain classification"
+        }
+      }
+    },
+
+    "value": {
+      "type": "object",
+      "required": ["name", "sentiment", "confidence"],
+      "additionalProperties": false,
+      "description": "A value or principle expressed by the entity",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the value (e.g., 'privacy', 'innovation')"
+        },
+        "sentiment": {
+          "type": "string",
+          "enum": ["positive", "negative", "neutral"],
+          "description": "How the value is expressed"
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Confidence level of value detection"
+        }
+      }
+    },
+
+    "knowledge": {
+      "type": "object",
+      "required": ["frequent_terms", "topics"],
+      "additionalProperties": false,
+      "description": "Knowledge areas and topics of discussion",
+      "properties": {
+        "frequent_terms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Frequently used terms and phrases"
+        },
+        "mentions": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "people": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "People frequently mentioned"
+            },
+            "projects": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Projects frequently mentioned"
+            },
+            "organizations": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Organizations frequently mentioned"
+            }
+          }
+        },
+        "topics": {
+          "type": "object",
+          "required": ["primary"],
+          "additionalProperties": false,
+          "properties": {
+            "primary": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Primary topics of discussion"
+            },
+            "secondary": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "Secondary topics of discussion"
+            }
+          }
+        }
+      }
+    }
+  }
+}

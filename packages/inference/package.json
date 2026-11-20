@@ -1,0 +1,23 @@
+{
+  "name": "@idiomark/inference",
+  "version": "1.0.0",
+  "description": "Idiomark Inference API - Apply personality to AI responses",
+  "main": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts"
+    }
+  },
+  "files": ["src/**/*", "README.md"],
+  "keywords": ["idiomark", "personality", "inference", "ai", "llm"],
+  "author": "Idiomark Protocol Contributors",
+  "license": "MIT",
+  "dependencies": {
+    "@idiomark/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.3",
+    "tsup": "^2.0.0"
+  }
+}

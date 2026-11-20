@@ -1,0 +1,84 @@
+{
+  "name": "@idiomark/core",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Idiomark Protocol Core - Extraction, validation, and inference engine",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./crypto": {
+      "types": "./dist/crypto/index.d.ts",
+      "import": "./dist/crypto/index.mjs",
+      "default": "./dist/crypto/index.mjs"
+    },
+    "./loader": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./adapters": {
+      "types": "./dist/adapters/index.d.ts",
+      "import": "./dist/adapters/index.mjs",
+      "default": "./dist/adapters/index.mjs"
+    },
+    "./types-v2": {
+      "types": "./dist/types-v2.d.ts",
+      "import": "./dist/types-v2.mjs",
+      "default": "./dist/types-v2.mjs"
+    },
+    "./personality-prompt": {
+      "types": "./dist/personality-prompt.d.ts",
+      "import": "./dist/personality-prompt.mjs",
+      "default": "./dist/personality-prompt.mjs"
+    },
+    "./analyzer-dev": {
+      "import": "./src/analyzer-dev.ts",
+      "types": "./src/analyzer-dev.ts"
+    },
+    "./types-dev": {
+      "import": "./src/types-dev.ts",
+      "types": "./src/types-dev.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup && tsc -p tsconfig.build.json --emitDeclarationOnly",
+    "test": "vitest",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "@aws-sdk/client-kms": "^3.993.0",
+    "@azure/identity": "^4.13.0",
+    "@azure/keyvault-keys": "^4.10.0",
+    "@noble/ciphers": "^2.1.1",
+    "@noble/curves": "^1.6.0",
+    "@noble/hashes": "^1.8.0",
+    "@scure/base": "^2.0.0",
+    "node-vault": "^0.10.9",
+    "pkcs11js": "^2.1.6",
+    "zod": "^3.24.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.57.1",
+    "@types/node": "^22.13.5",
+    "tsup": "^8.4.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.7",
+    "@types/uuid": "^10.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

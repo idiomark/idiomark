@@ -1,0 +1,370 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://idiomark.protocol/schemas/idiomarkd",
+  "title": "IdiomarkD - Idiomark for Developers",
+  "description": "Developer behavioral and environmental personality profile format for AI tool integration and portable development environments",
+  "type": "object",
+
+  "definitions": {
+    "developerBehavior": {
+      "type": "object",
+      "description": "How a developer approaches problems, structures code, names things, handles errors, tests, and reviews",
+      "properties": {
+        "cognitive_style": {
+          "type": "object",
+          "description": "HOW you approach problems",
+          "properties": {
+            "problem_solving": {
+              "type": "string",
+              "enum": ["iterative_refinement", "divide_conquer", "mvp_first", "spike_first"],
+              "description": "Primary problem-solving approach"
+            },
+            "learning_style": {
+              "type": "string",
+              "enum": ["experimentation", "research_driven", "copy_existing_similar"],
+              "description": "How you acquire new skills"
+            },
+            "documentation_preference": {
+              "type": "string",
+              "enum": ["code_first_comments_selective", "comments_first_code_second", "docstring_driven"],
+              "description": "Where you prefer documentation"
+            }
+          }
+        },
+        "code_structure": {
+          "type": "object",
+          "description": "HOW you structure code",
+          "properties": {
+            "functional_preference": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "How much you prefer functional approaches (0 = imperative, 1 = functional)"
+            },
+            "max_function_length": {
+              "type": "number",
+              "minimum": 0,
+              "description": "Maximum preferred function length"
+            },
+            "complexity_tolerance": {
+              "type": "string",
+              "enum": ["minimal", "moderate", "high"],
+              "description": "Comfort level with code complexity"
+            },
+            "file_organization": {
+              "type": "string",
+              "enum": ["co_located", "domain_driven", "layered"],
+              "description": "How you organize files"
+            }
+          }
+        },
+        "naming": {
+          "type": "object",
+          "description": "HOW you name things",
+          "properties": {
+            "philosophy": {
+              "type": "string",
+              "enum": ["descriptive_over_brief", "efficient"],
+              "description": "Overall naming philosophy"
+            },
+            "conventions": {
+              "type": "object",
+              "description": "Naming conventions by category",
+              "properties": {
+                "variables": {
+                      "type": "string",
+                      "enum": ["camelCase", "PascalCase", "UPPER_SNAKE"]
+                    },
+                    "types": {
+                      "type": "string",
+                      "enum": ["PascalCase", "camelCase"]
+                    },
+                    "constants": {
+                      "type": "string",
+                      "enum": ["UPPER_SNAKE", "kebab-case"]
+                    },
+                    "files": {
+                      "type": "string",
+                      "enum": ["kebab-case", "camelCase", "PascalCase"]
+                    }
+              }
+            },
+            "abbreviations": {
+              "type": "array",
+              "items": {
+                    "type": "string",
+                    "description": "Common developer abbreviations"
+              }
+            },
+            "anti_patterns": {
+              "type": "array",
+              "items": {
+                    "type": "string",
+                    "description": "Naming patterns to avoid"
+              }
+            }
+          }
+        },
+        "error_handling": {
+          "type": "object",
+          "description": "HOW you handle errors",
+          "properties": {
+            "philosophy": {
+              "type": "string",
+              "enum": ["graceful_degradation", "fail_fast", "defensive"],
+              "description": "Overall error handling philosophy"
+            },
+            "fail_fast": {
+              "type": "boolean",
+              "description": "Whether to fail immediately on errors"
+            },
+            "error_context": {
+              "type": "string",
+              "enum": ["always_include_trace", "on_error_only"],
+              "description": "How much error information to include"
+            },
+            "logging_level": {
+              "type": "string",
+              "enum": ["silent", "fatal", "error", "warn", "info", "debug"],
+              "description": "Minimum logging level"
+            }
+          }
+        },
+        "testing": {
+          "type": "object",
+          "description": "HOW you approach testing",
+          "properties": {
+            "temperament": {
+              "type": "string",
+              "enum": ["pragmatic_not_zealous", "tdd_zealot", "exploratory"],
+              "description": "Overall testing approach"
+            },
+            "coverage_threshold": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Minimum acceptable test coverage (0-1)"
+            },
+            "test_external_dependencies": {
+              "type": "boolean",
+              "description": "Whether to mock external dependencies in tests"
+            },
+            "mock_strategy": {
+              "type": "string",
+              "enum": ["external_only", "mixed", "minimal"],
+              "description": "Strategy for mocking dependencies"
+            }
+          }
+        },
+        "code_review": {
+          "type": "object",
+          "description": "HOW you review code",
+          "properties": {
+            "style": {
+              "type": "string",
+              "enum": ["collaborative_not_adversarial", "direct", "mentoring"],
+              "description": "Code review style"
+            },
+            "focus_areas": {
+              "type": "array",
+              "items": {
+                    "type": "string",
+                    "description": "What you focus on during reviews"
+              }
+            },
+            "nit_picks": {
+              "type": "array",
+              "items": {
+                    "type": "string",
+                    "description": "Things that bother you in reviews"
+              }
+            }
+          }
+        }
+      }
+    },
+    "developerAIPersonality": {
+      "type": "object",
+      "description": "How AI tools should represent and generate code for a specific developer",
+      "properties": {
+        "voice": {
+          "type": "object",
+          "description": "HOW AI should represent you",
+          "properties": {
+            "tone": {
+              "type": "object",
+              "description": "Communication style",
+              "properties": {
+                "primary": {
+                      "type": "string",
+                      "enum": ["casual", "professional", "technical", "friendly"],
+                      "description": "Primary communication tone"
+                    },
+                "certainty": {
+                      "type": "string",
+                      "enum": ["confident_with_hedges", "very_certain", "uncertain_and_ask"],
+                      "description": "Level of confidence in statements"
+                    }
+              }
+            },
+            "formality": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Communication formality (0 = casual, 1 = formal)"
+            },
+            "humor": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Communication humor (0 = serious, 1 = humorous)"
+            },
+            "sarcasm": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Communication sarcasm (0 = sincere, 1 = sarcastic)"
+            },
+            "enthusiasm": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Communication enthusiasm (0 = flat, 1 = high energy)"
+            },
+            "directness": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1,
+              "description": "Communication directness (0 = euphemistic, 1 = blunt)"
+            }
+          },
+          "code_generation": {
+            "type": "object",
+            "description": "HOW AI should generate code for you",
+            "properties": {
+              "prefer_patterns_over_raw_code": {
+                    "type": "boolean",
+                    "description": "Whether to prefer established patterns over writing raw code"
+                    },
+              "include_explanations": {
+                    "type": "string",
+                    "enum": ["selective", "always", "never"],
+                    "description": "When to include code explanations"
+                    },
+              "comment_style": {
+                    "type": "string",
+                    "enum": ["why_not_what", "what_only", "how_and_why"],
+                    "description": "How comments are written"
+                    },
+              "docstring_preference": {
+                    "type": "string",
+                    "enum": ["javadoc", "jsdoc", "none"],
+                    "description": "Preferred docstring format"
+                    }
+            }
+          },
+          "interaction": {
+            "type": "object",
+            "description": "HOW AI should respond to you",
+            "properties": {
+              "question_response_style": {
+                    "type": "string",
+                    "enum": ["direct_with_options", "socratic", "exploratory"],
+                    "description": "How to respond to questions"
+                    },
+              "error_communication": {
+                    "type": "string",
+                    "enum": ["explain_then_fix", "just_fix", "acknowledge_only"],
+                    "description": "How to communicate about errors"
+                    },
+              "suggestion_openness": {
+                    "type": "string",
+                    "enum": ["high_but_skeptical", "balanced", "conservative"],
+                    "description": "Openness to suggestions"
+                    }
+            }
+          }
+        }
+      }
+    },
+    "developerEnvironment": {
+      "type": "object",
+      "description": "Environmental preferences for development",
+      "properties": {
+        "optional": {
+              "type": "boolean",
+              "description": "Whether entire environment section is optional"
+        },
+        "editor": {
+              "type": "object",
+              "description": "Editor preferences",
+              "properties": {
+                "vscode": {
+                      "type": "object",
+                      "description": "VS Code specific settings"
+                    },
+                "theme": {
+                      "type": "string",
+                      "description": "Preferred color theme"
+                    },
+                "font_size": {
+                      "type": "number",
+                      "description": "Editor font size"
+                    },
+                "tab_size": {
+                      "type": "number",
+                      "description": "Tab width in spaces"
+                    },
+                "format_on_save": {
+                      "type": "boolean",
+                      "description": "Whether to format on save"
+                    },
+                "extensions": {
+                      "type": "object",
+                      "description": "Extension preferences"
+                    }
+              }
+            },
+        "terminal": {
+              "type": "object",
+              "description": "Terminal preferences",
+              "properties": {
+                "shell": {
+                      "type": "string",
+                      "enum": ["zsh", "bash", "fish", "powershell"],
+                      "description": "Preferred shell"
+                    },
+                "theme": {
+                      "type": "string",
+                      "description": "Color theme"
+                    },
+                "aliases": {
+                      "type": "object",
+                      "description": "Command shortcuts"
+                    }
+              }
+            },
+        "operating_system": {
+              "type": "object",
+              "description": "Operating system specific preferences",
+              "properties": {
+                "windows": {
+                      "type": "object",
+                      "description": "Windows-specific settings"
+                    },
+                "macos": {
+                      "type": "object",
+                      "description": "macOS-specific settings"
+                    },
+                "linux": {
+                      "type": "object",
+                      "description": "Linux-specific settings"
+                    }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

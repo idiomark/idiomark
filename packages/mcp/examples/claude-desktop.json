@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "my-personality-context": {
+      "command": "node",
+      "args": [
+        "-e",
+        "import('./dist/index.js').then(m => new m.Idiomark_MCPServer({idiomarkFile: './me.idiomark'}).then(s => s.start())",
+        "--",
+        "${workspaceFolder}/packages/mcp/dist/index.js"
+      ],
+      "env": {
+        "NODE_OPTIONS": "--import ./tsx"
+      }
+    },
+    "my-personality-engine-ollama": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@idiomark/mcp",
+        "--file",
+        "${workspaceFolder}/me.idiomark",
+        "--llm-type",
+        "ollama"
+      ]
+    },
+    "my-personality-engine-anthropic": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@idiomark/mcp",
+        "--file",
+        "${workspaceFolder}/me.idiomark",
+        "--llm-type",
+        "anthropic",
+        "--api-key",
+        "${ANTHROPIC_API_KEY}"
+      ],
+      "env": {
+        "ANTHROPIC_API_KEY": "${ANTHROPIC_API_KEY}"
+      }
+    }
+  }
+}
