@@ -4,7 +4,8 @@
 
 `idiomark` is an open (MIT) file format + SDK that captures how a specific person
 speaks and thinks — voice, tone, writing patterns, values, cognitive style — into a
-portable file, so AI systems sound like *that person* instead of sounding generic.
+portable file, so AI systems can sound like *that person* and understand them,
+instead of sounding generic.
 
 ```ini
 ; sketch of a .idiomark file
