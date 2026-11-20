@@ -2,7 +2,7 @@
   "name": "idiomark",
   "version": "0.1.0",
   "private": true,
-  "description": "Idiomark - the personality format for AI. A portable file format capturing how a specific person speaks and thinks, so AI sounds like them.",
+  "description": "Idiomark - the personality format for AI. A portable file format capturing how a person speaks and thinks, so AI can sound like them and understand them.",
   "license": "MIT",
   "packageManager": "pnpm@10.17.0",
   "scripts": {
