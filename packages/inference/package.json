@@ -1,6 +1,6 @@
 {
   "name": "@idiomark/inference",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Idiomark Inference API - Apply personality to AI responses",
   "main": "./dist/index.mjs",
   "types": "./dist/index.d.mts",
@@ -9,8 +9,17 @@
       "types": "./dist/index.d.mts"
     }
   },
-  "files": ["src/**/*", "README.md"],
-  "keywords": ["idiomark", "personality", "inference", "ai", "llm"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "keywords": [
+    "idiomark",
+    "personality",
+    "inference",
+    "ai",
+    "llm"
+  ],
   "author": "Idiomark Protocol Contributors",
   "license": "MIT",
   "dependencies": {
@@ -19,5 +28,17 @@
   "devDependencies": {
     "typescript": "^5.7.3",
     "tsup": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idiomark/idiomark.git",
+    "directory": "packages/inference"
+  },
+  "homepage": "https://github.com/idiomark/idiomark#readme",
+  "bugs": {
+    "url": "https://github.com/idiomark/idiomark/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

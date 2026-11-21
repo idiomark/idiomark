@@ -1,7 +1,7 @@
 {
   "name": "@idiomark/projectors",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Idiomark Projectors - Apply personalities to external systems (MCP, UCP, HTTP, Gaming)",
   "type": "module",
   "main": "./dist/index.js",
@@ -63,5 +63,21 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idiomark/idiomark.git",
+    "directory": "packages/projectors"
+  },
+  "homepage": "https://github.com/idiomark/idiomark#readme",
+  "bugs": {
+    "url": "https://github.com/idiomark/idiomark/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

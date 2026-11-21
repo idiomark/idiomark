@@ -1,6 +1,6 @@
 {
   "name": "@idiomark/mcp",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Idiomark MCP Server - Context7 for personality. Single package with Context (read-only) and Engine (generative) modes.",
   "type": "module",
   "main": "./dist/index.js",
@@ -50,6 +50,18 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/idiomark-protocol/idiomark-mcp"
+    "url": "git+https://github.com/idiomark/idiomark.git",
+    "directory": "packages/mcp"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "homepage": "https://github.com/idiomark/idiomark#readme",
+  "bugs": {
+    "url": "https://github.com/idiomark/idiomark/issues"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
