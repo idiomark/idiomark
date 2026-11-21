@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "typescript": "^5.7.3",
-    "tsup": "^2.0.0"
+    "tsup": "^9.0.0"
   },
   "repository": {
     "type": "git",
