@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "typescript": "^5.7.3",
-    "tsup": "^2.0.0"
+    "tsup": "^8.4.0"
   },
   "repository": {
     "type": "git",
@@ -40,5 +40,11 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "lint": "eslint src/",
+    "clean": "rm -rf dist"
   }
 }

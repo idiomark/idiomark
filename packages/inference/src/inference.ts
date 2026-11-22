@@ -8,7 +8,7 @@ import { createPrompt } from './prompts'
 
 export class InferenceEngine {
   private idiomark: IdiomarkFile
-  private provider: InferenceOptions['provider']
+  private provider: NonNullable<InferenceOptions['provider']>
   private mode: ResponseMode
   private context?: ConversationContext
   private cache = new Map<string, InferenceResponse>()
