@@ -1,7 +1,7 @@
 {
   "name": "@idiomark/cli",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "description": "Idiomark Protocol CLI - Extract, validate, and serve personality blueprints",
   "bin": {
@@ -37,5 +37,24 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idiomark/idiomark.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://github.com/idiomark/idiomark#readme",
+  "bugs": {
+    "url": "https://github.com/idiomark/idiomark/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "overrides": {
+    "tinypool": "^2.2.0"
   }
 }

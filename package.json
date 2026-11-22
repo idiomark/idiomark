@@ -22,6 +22,9 @@
     "onlyBuiltDependencies": [
       "esbuild",
       "pkcs11js"
-    ]
+    ],
+    "overrides": {
+      "tinypool": "^2.2.0"
+    }
   }
 }
