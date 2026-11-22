@@ -29,7 +29,7 @@
   "devDependencies": {
     "@rollup/rollup-win32-x64-msvc": "^4.57.1",
     "@types/inquirer": "^9.0.7",
-    "@types/node": "^22.13.5",
+    "@types/node": "^26.6.6",
     "tsup": "^8.4.0",
     "typescript": "^5.7.3",
     "vitest": "^3.0.7",
