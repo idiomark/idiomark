@@ -1,35 +1,19 @@
 version: 2
 updates:
+  # single entry at the workspace root — dependabot resolves pnpm workspaces,
+  # so this covers every package in one update stream instead of one per package
   - package-ecosystem: npm
-    directory: "/packages/core"
+    directory: "/"
     schedule:
       interval: weekly
-  - package-ecosystem: npm
-    directory: "/packages/sdk"
-    schedule:
-      interval: weekly
-  - package-ecosystem: npm
-    directory: "/packages/cli"
-    schedule:
-      interval: weekly
-  - package-ecosystem: npm
-    directory: "/packages/inference"
-    schedule:
-      interval: weekly
-  - package-ecosystem: npm
-    directory: "/packages/mcp"
-    schedule:
-      interval: weekly
-  - package-ecosystem: npm
-    directory: "/packages/projectors"
-    schedule:
-      interval: weekly
+    groups:
+      # collapse minor+patch into one PR; majors still come individually
+      minor-and-patch:
+        update-types: ["minor", "patch"]
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
       interval: weekly
-  groups:
-    # collapse minor/patch noise into one PR per ecosystem; majors still
-    # deserve individual review but group them per-package-set
-    minor-and-patch:
-      update-types: ["minor", "patch"]
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
