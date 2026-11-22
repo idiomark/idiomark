@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="https://raw.githubusercontent.com/idiomark/.github/main/banner.svg" alt="Idiomark — the personality format for AI" width="100%">
+</div>
+
 # Idiomark
 
 > **The personality format for AI.**
