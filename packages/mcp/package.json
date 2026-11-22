@@ -1,6 +1,6 @@
 {
   "name": "@idiomark/mcp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Idiomark MCP Server - Context7 for personality. Single package with Context (read-only) and Engine (generative) modes.",
   "type": "module",
   "main": "./dist/index.js",
@@ -22,8 +22,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@idiomark/core": "workspace:*",
-    "@idiomark/inference": "workspace:*",
+    "@idiomark/core": "^0.1.0",
+    "@idiomark/inference": "^0.1.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {

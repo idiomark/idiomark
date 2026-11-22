@@ -1,7 +1,7 @@
 {
   "name": "@idiomark/sdk",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Idiomark Protocol SDK - Developer-friendly integration library",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@idiomark/core": "workspace:*"
+    "@idiomark/core": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",

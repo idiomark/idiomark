@@ -1,7 +1,7 @@
 {
   "name": "@idiomark/cli",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "description": "Idiomark Protocol CLI - Extract, validate, and serve personality blueprints",
   "bin": {
@@ -17,9 +17,9 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@idiomark/core": "workspace:*",
-    "@idiomark/projectors": "workspace:*",
-    "@idiomark/sdk": "workspace:*",
+    "@idiomark/core": "^0.1.0",
+    "@idiomark/projectors": "^0.1.0",
+    "@idiomark/sdk": "^0.1.0",
     "chalk": "^5.4.1",
     "commander": "^13.1.0",
     "inquirer": "^9.2.23",

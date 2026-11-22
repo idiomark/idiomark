@@ -1,7 +1,7 @@
 {
   "name": "@idiomark/projectors",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Idiomark Projectors - Apply personalities to external systems (MCP, UCP, HTTP, Gaming)",
   "type": "module",
   "main": "./dist/index.js",
@@ -52,8 +52,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@idiomark/core": "workspace:*",
-    "@idiomark/inference": "workspace:*"
+    "@idiomark/core": "^0.1.0",
+    "@idiomark/inference": "^0.1.0"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",
