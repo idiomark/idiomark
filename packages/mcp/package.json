@@ -24,7 +24,7 @@
   "dependencies": {
     "@idiomark/core": "^0.1.0",
     "@idiomark/inference": "^0.1.0",
-    "zod": "^3.24.2"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",
