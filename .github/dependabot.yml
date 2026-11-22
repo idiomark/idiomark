@@ -28,3 +28,8 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+  groups:
+    # collapse minor/patch noise into one PR per ecosystem; majors still
+    # deserve individual review but group them per-package-set
+    minor-and-patch:
+      update-types: ["minor", "patch"]
