@@ -112,7 +112,9 @@ export {
   EditorIntegration,
   createIntegration,
   applyCodeStyle,
-  generateComment
+  generateComment,
+  DevBehavior,
+  CodeTransformation
 } from './integration-dev'
 
 // Inference Server
