@@ -41,7 +41,7 @@ export async function loadIdiomarkFile(
         schema.parse(data)
       } catch (error: any) {
         throw new Error(
-          `Idiomark file validation failed: ${error.errors?.map((e: any) => e.message).join(', ') || error.message}`
+          `Idiomark file validation failed: ${error.issues?.map((e: any) => e.message).join(', ') || error.message}`
         )
       }
     }

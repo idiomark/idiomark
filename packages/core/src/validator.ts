@@ -50,8 +50,8 @@ export class IdiomarkValidator {
     try {
       schema.parse(data)
     } catch (error: any) {
-      if (error.errors && Array.isArray(error.errors)) {
-        for (const err of error.errors) {
+      if (error.issues && Array.isArray(error.issues)) {
+        for (const err of error.issues) {
           errors.push({
             field: err.path.join('.'),
             message: err.message,
