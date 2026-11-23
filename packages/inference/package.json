@@ -23,7 +23,7 @@
   "author": "Idiomark Protocol Contributors",
   "license": "MIT",
   "dependencies": {
-    "@idiomark/core": "^0.1.0"
+    "@idiomark/core": "workspace:*"
   },
   "devDependencies": {
     "typescript": "^5.7.3",

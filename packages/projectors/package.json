@@ -52,8 +52,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@idiomark/core": "^0.1.0",
-    "@idiomark/inference": "^0.1.0"
+    "@idiomark/core": "workspace:*",
+    "@idiomark/inference": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.13.5",

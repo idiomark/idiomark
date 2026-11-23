@@ -22,8 +22,8 @@
     "clean": "rm -rf dist"
   },
   "dependencies": {
-    "@idiomark/core": "^0.1.0",
-    "@idiomark/inference": "^0.1.0",
+    "@idiomark/core": "workspace:*",
+    "@idiomark/inference": "workspace:*",
     "zod": "^4.6.6"
   },
   "devDependencies": {
