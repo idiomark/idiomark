@@ -85,8 +85,8 @@ export class IdiomarkDValidator {
       try {
         DeveloperBehaviorSchema.parse(data.behavioral)
       } catch (error: any) {
-        if (error.errors && Array.isArray(error.errors)) {
-          for (const err of error.errors) {
+        if (error.issues && Array.isArray(error.issues)) {
+          for (const err of error.issues) {
             errors.push({
               field: `behavioral.${err.path.join('.')}`,
               message: err.message,
@@ -102,8 +102,8 @@ export class IdiomarkDValidator {
       try {
         DeveloperAIPersonalitySchema.parse(data.ai_personality)
       } catch (error: any) {
-        if (error.errors && Array.isArray(error.errors)) {
-          for (const err of error.errors) {
+        if (error.issues && Array.isArray(error.issues)) {
+          for (const err of error.issues) {
             errors.push({
               field: `ai_personality.${err.path.join('.')}`,
               message: err.message,
@@ -119,8 +119,8 @@ export class IdiomarkDValidator {
       try {
         DeveloperEnvironmentSchema.parse(data.environmental)
       } catch (error: any) {
-        if (error.errors && Array.isArray(error.errors)) {
-          for (const err of error.errors) {
+        if (error.issues && Array.isArray(error.issues)) {
+          for (const err of error.issues) {
             errors.push({
               field: `environmental.${err.path.join('.')}`,
               message: err.message,
@@ -135,8 +135,8 @@ export class IdiomarkDValidator {
     try {
       IdiomarkDSchema.parse(data)
     } catch (error: any) {
-      if (error.errors && Array.isArray(error.errors)) {
-        for (const err of error.errors) {
+      if (error.issues && Array.isArray(error.issues)) {
+        for (const err of error.issues) {
           errors.push({
             field: err.path.join('.'),
             message: err.message,

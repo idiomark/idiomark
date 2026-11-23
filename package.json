@@ -16,7 +16,7 @@
     "@types/node": "^22.13.5",
     "tsx": "^4.21.0",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.7"
+    "vitest": "^4.1.12"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -24,7 +24,8 @@
       "pkcs11js"
     ],
     "overrides": {
-      "tinypool": "^2.2.0"
+      "tinypool": "^2.2.0",
+      "esbuild": ">=0.28.1"
     }
   }
 }

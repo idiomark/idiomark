@@ -86,7 +86,7 @@ export const RawActivityEventSchema = z.object({
 
   // Optional context
   actor: z.string().optional().describe('Who caused it (if not self)'),
-  context: z.record(z.unknown()).optional().describe('Additional context (keep small)'),
+  context: z.record(z.string(), z.unknown()).optional().describe('Additional context (keep small)'),
   ttl: z.number().int().positive().optional().describe('Time-to-live in seconds'),
 
   // Integrity

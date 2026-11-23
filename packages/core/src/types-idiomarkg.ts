@@ -216,8 +216,8 @@ export interface IdiomarkGExtension extends z.infer<typeof IdiomarkGExtensionSch
 // Placeholder for base Idiomark personality schema (imported from main types)
 const PersonalityPlaceholder = z.object({
   // This would be replaced with actual Idiomark personality schema
-  traits: z.record(z.number()).optional(),
-  preferences: z.record(z.any()).optional()
+  traits: z.record(z.string(), z.number()).optional(),
+  preferences: z.record(z.string(), z.any()).optional()
 })
 
 export const IdiomarkGFileSchema = z.object({
@@ -245,7 +245,7 @@ export function validatePlayStyle(data: unknown): ValidationResult {
     return { valid: true }
   }
   const errors: Record<string, string> = {}
-  result.error.errors.forEach((err) => {
+  result.error.issues.forEach((err) => {
     const path = err.path.join('.')
     errors[path] = err.message
   })
@@ -258,7 +258,7 @@ export function validatePlatformPresence(data: unknown): ValidationResult {
     return { valid: true }
   }
   const errors: Record<string, string> = {}
-  result.error.errors.forEach((err) => {
+  result.error.issues.forEach((err) => {
     const path = err.path.join('.')
     errors[path] = err.message
   })
@@ -271,7 +271,7 @@ export function validateAchievementRecord(data: unknown): ValidationResult {
     return { valid: true }
   }
   const errors: Record<string, string> = {}
-  result.error.errors.forEach((err) => {
+  result.error.issues.forEach((err) => {
     const path = err.path.join('.')
     errors[path] = err.message
   })
@@ -284,7 +284,7 @@ export function validateSocialGraph(data: unknown): ValidationResult {
     return { valid: true }
   }
   const errors: Record<string, string> = {}
-  result.error.errors.forEach((err) => {
+  result.error.issues.forEach((err) => {
     const path = err.path.join('.')
     errors[path] = err.message
   })
@@ -297,7 +297,7 @@ export function validateSkillProfile(data: unknown): ValidationResult {
     return { valid: true }
   }
   const errors: Record<string, string> = {}
-  result.error.errors.forEach((err) => {
+  result.error.issues.forEach((err) => {
     const path = err.path.join('.')
     errors[path] = err.message
   })
@@ -310,7 +310,7 @@ export function validateIdiomarkGFile(data: unknown): ValidationResult {
     return { valid: true }
   }
   const errors: Record<string, string> = {}
-  result.error.errors.forEach((err) => {
+  result.error.issues.forEach((err) => {
     const path = err.path.join('.')
     errors[path] = err.message
   })
