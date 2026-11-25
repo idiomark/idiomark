@@ -40,5 +40,5 @@ jobs:
         with:
           version: pnpm exec changeset version
           publish: pnpm exec changeset publish
-          title: chore: version packages
+          title: "chore: version packages"
           commit: "chore: version packages"
