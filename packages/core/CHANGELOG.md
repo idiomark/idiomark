@@ -1,5 +1,13 @@
 # @idiomark/core
 
+## 0.1.3
+
+### Patch Changes
+
+- [#56](https://github.com/idiomark/idiomark/pull/56) [`9b416ba`](https://github.com/idiomark/idiomark/commit/9b416badc53e9a7675e84f4df62486b016fcfd32) Thanks [@JordanNewell](https://github.com/JordanNewell)! - Rebuild published tarballs: 0.1.2 shipped without `dist/` (release pipeline
+  published before building). 0.1.3 includes built output; 0.1.2 is broken —
+  do not use.
+
 ## 0.1.2
 
 ### Patch Changes
