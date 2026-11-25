@@ -35,9 +35,7 @@ coverage/
 .nyc_output/
 
 # Misc
-.turbo/
 .cache/
-.docusaurus/
 
 # Build output files
 build_output*.txt

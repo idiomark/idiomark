@@ -40,20 +40,12 @@
       "types": "./dist/personality-prompt.d.ts",
       "import": "./dist/personality-prompt.mjs",
       "default": "./dist/personality-prompt.mjs"
-    },
-    "./analyzer-dev": {
-      "import": "./src/analyzer-dev.ts",
-      "types": "./src/analyzer-dev.ts"
-    },
-    "./types-dev": {
-      "import": "./src/types-dev.ts",
-      "types": "./src/types-dev.ts"
     }
   },
   "scripts": {
     "dev": "tsup --watch",
     "build": "tsup && tsc -p tsconfig.build.json --emitDeclarationOnly",
-    "test": "vitest",
+    "test": "vitest run",
     "lint": "eslint src/",
     "clean": "rm -rf dist"
   },
