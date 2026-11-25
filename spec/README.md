@@ -95,4 +95,4 @@ Implementations that pass the conformance test suite can be [certified](../certi
 
 - [Conformance Test Suite](../conformance/) - Validate your implementation
 - [Certification Program](../certification/) - Get your client certified
-- [Documentation](../docs-site/docs/) - Full protocol documentation
+- [Documentation](https://docs.idiomark.org/) - Full protocol documentation

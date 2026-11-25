@@ -512,4 +512,4 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 - [V2 Experimental Specification](../v2/README.md)
 - [Conformance Test Suite](../../conformance/README.md)
 - [Certification Program](../../certification/README.md)
-- [Contributing Adapters](../../docs-site/docs/contributing-adapters.md)
+- [Contributing Adapters](https://docs.idiomark.org/contributing)

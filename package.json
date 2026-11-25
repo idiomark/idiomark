@@ -13,6 +13,8 @@
     "cli": "node packages/cli/dist/index.js"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.1",
+    "@changesets/cli": "^3.0.3",
     "@types/node": "^22.13.5",
     "tsx": "^4.21.0",
     "typescript": "^5.7.3",

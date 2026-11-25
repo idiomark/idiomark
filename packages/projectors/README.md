@@ -201,7 +201,7 @@ idiomark projector validate ./my-server
 idiomark projector test ./my-server
 ```
 
-See [CLI Documentation](../../docs-site/docs/projectors.md) for full command reference.
+See [CLI Documentation](https://docs.idiomark.org/projectors) for full command reference.
 
 ## API Reference
 
