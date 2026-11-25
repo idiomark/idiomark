@@ -1,7 +1,7 @@
 {
   "name": "@idiomark/cli",
   "license": "MIT",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Idiomark Protocol CLI - Extract, validate, and serve personality blueprints",
   "bin": {
