@@ -11,17 +11,49 @@ speaks and thinks — voice, tone, writing patterns, values, cognitive style —
 portable file, so AI systems can sound like *that person* and understand them,
 instead of sounding generic.
 
-```ini
-; sketch of a .idiomark file
-[voice]
-tone        = direct, dry
-hedging     = low
-[writing]
-sentence    = short. fragments welcome.
-emoji       = never
-[values]
- candor     = core
- brevity    = core
+```json
+{
+  "idiomark": "1.0.0",
+  "id": "idiomark_jordan",
+  "created": "2026-11-25T00:00:00Z",
+  "updated": "2026-11-25T00:00:00Z",
+  "metadata": {
+    "entity": { "name": "Jordan", "type": "human", "sources": ["github", "email"] },
+    "extraction": {
+      "date": "2026-11-25T00:00:00Z",
+      "sample_size": 1200,
+      "timeframe": { "from": "2026-08-25T00:00:00Z", "to": "2026-11-25T00:00:00Z" }
+    }
+  },
+  "personality": {
+    "voice": {
+      "tone": { "primary": "direct", "secondary": "dry", "confidence": 0.87 },
+      "formality": 0.25,
+      "humor": 0.55,
+      "sarcasm": 0.6,
+      "enthusiasm": 0.3,
+      "directness": 0.92
+    },
+    "patterns": {
+      "sentence_length": { "mean": 9.4, "stddev": 4.1 },
+      "emoji_usage": { "frequency": "none", "top_emojis": [] },
+      "punctuation": {
+        "exclamation_frequency": 0.02,
+        "question_frequency": 0.08,
+        "ellipsis_usage": "none"
+      }
+    },
+    "domains": [{ "name": "software-engineering", "confidence": 0.93 }],
+    "values": [
+      { "name": "candor", "sentiment": "positive", "confidence": 0.91 },
+      { "name": "brevity", "sentiment": "positive", "confidence": 0.88 }
+    ],
+    "knowledge": {
+      "frequent_terms": [],
+      "topics": { "primary": ["infrastructure", "tooling"] }
+    }
+  }
+}
 ```
 
 ## Why

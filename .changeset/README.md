@@ -19,5 +19,7 @@ moves the whole suite, matching how the format packages evolve in lockstep.
    - That PR merged + no changesets pending → it publishes all `@idiomark/*`
      packages to npm with provenance.
 
-`NPM_TOKEN` secret must be set repo-wide (fine-grained token with
-publish permission for the `idiomark` packages, automation type — no OTP).
+Publishing uses **npm trusted publishing (OIDC)** — no token secret. Each
+`@idiomark/*` package on npmjs.com has a trusted publisher configured:
+GitHub Actions → `idiomark/idiomark` → `release.yml`. The workflow holds
+`id-token: write`, so provenance attestations are attached automatically.
