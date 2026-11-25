@@ -35,6 +35,11 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      # Publishing without a build ships dead tarballs (package.json + README,
+      # no dist) — 0.1.2 shipped exactly that. Build is mandatory before publish.
+      - name: Build
+        run: pnpm build
+
       - name: Version or publish
         uses: changesets/action@v1
         env:
