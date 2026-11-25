@@ -1,6 +1,6 @@
 {
   "name": "@idiomark/mcp",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Idiomark MCP Server - Context7 for personality. Single package with Context (read-only) and Engine (generative) modes.",
   "type": "module",
   "main": "./dist/index.js",
