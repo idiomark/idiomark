@@ -1,5 +1,13 @@
 # @idiomark/mcp
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [[`9b416ba`](https://github.com/idiomark/idiomark/commit/9b416badc53e9a7675e84f4df62486b016fcfd32)]:
+  - @idiomark/core@0.1.3
+  - @idiomark/inference@0.1.3
+
 ## 0.1.2
 
 ### Patch Changes
